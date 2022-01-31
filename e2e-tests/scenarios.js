@@ -1,9 +1,12 @@
 'use strict';
 
+const { browser } = require("protractor");
+
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
 describe('my app', function() {
 
+  browser.waitForAngularEnabled(false);
 
   it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
     browser.get('index.html');
@@ -34,6 +37,7 @@ describe('my app', function() {
 
 
     it('should render view2 when user navigates to /view2', function() {
+      browser.refresh()
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/partial for view 2/);
     });
